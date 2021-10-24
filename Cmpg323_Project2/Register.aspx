@@ -62,8 +62,8 @@ div .one{
         }
 
     .logo a {
-        text-transform: lowercase;
-        font-size: 15px;
+        text-transform: uppercase;
+        font-size: 25px;
         color: #574a2b;
     }
 
@@ -143,7 +143,7 @@ div .one{
        
           .auto-style6 {
               height: 74px;
-              margin-top: 41;
+              margin-top: 41px;
           }
        
         </style>
@@ -155,7 +155,7 @@ div .one{
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">About</a></li>
-            <li><a href="/landing.html">Home</a></li>
+            <li><a href="Home.aspx">Home</a></li>
             
             
             <li><a href="Login.aspx">Login</a></li>
