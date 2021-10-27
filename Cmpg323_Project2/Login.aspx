@@ -163,8 +163,39 @@ div .one{
         </ul>
 
     </header>
-        <div>
-        </div>
+        <div class="contain">
+        <div class="contain1" style="margin-left: 15%; padding-top: 20px; padding-right: 10%; max-width: 100%">
+            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Log in to your account now</h1>
+            <br />
+            <a href="/users/apply">
+       <asp:Label ID="Label1" runat="server" Text="Username"></asp:Label>
+                </a>
+       <p>
+           <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style1" Height="35px" Width="455px"></asp:TextBox>
+            <a href="/users/apply">
+       <asp:Label ID="Label3" runat="server" Text="."></asp:Label>
+                </a>
+       </p>
+       <p>
+           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*Enter a a valid name" ForeColor="Red"></asp:RequiredFieldValidator>
+       </p>
+       <p>
+           <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
+       </p>
+       <p>
+           <asp:TextBox ID="TextBox2" runat="server" Height="35px" Width="455px" TextMode="Password"></asp:TextBox>
+       </p>
+            <p>
+           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox2" ErrorMessage="*Enter valid Password" ForeColor="Red"></asp:RequiredFieldValidator>
+       </p>
+            <p>
+                &nbsp;</p>
+             <p>
+               <asp:Button ID="Button1" runat="server" Text="Submit" BackColor="#000099" ForeColor="White" OnClick="Button1_Click" Width="455px" Height="42px" />
+       </p>
+            </div>
+                </div>
+            
     </form>
 </body>
 </html>
