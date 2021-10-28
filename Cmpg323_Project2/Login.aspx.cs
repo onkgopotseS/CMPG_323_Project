@@ -23,20 +23,19 @@ namespace Cmpg323_Project2
 
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString);
             con.Open();
-            string checkuser = "select count(*) from PhtotDatabase where First_Name='" + TextBox1.Text + "'";
+            string checkuser = "select count(*) from User_Login where First_Name='" + TextBox1.Text + "'";
             SqlCommand com = new SqlCommand(checkuser, con);
             int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
             con.Close();
             if (temp == 1)
             {
-                // Response.Write("User Already Exists");
-                //check if password is in the table
+                
                 con.Open();
-                string checkPasswordQuery = "select Password from RegisterTable where Name='" + TextBox1.Text + "'";
+                string checkPasswordQuery = "select Password from User_Login where Name='" + TextBox1.Text + "'";
                 SqlCommand passComm = new SqlCommand(checkPasswordQuery, con);
                 string password = passComm.ExecuteScalar().ToString().Replace(" ", "");
 
-                //verify password
+               
                 if (password == TextBox2.Text)
                 {
                     Session["New"] = TextBox1.Text;
