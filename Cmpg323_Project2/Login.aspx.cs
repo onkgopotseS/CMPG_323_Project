@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Data;
 using System.Configuration;
+
 namespace Cmpg323_Project2
 {
     public partial class Login : System.Web.UI.Page
@@ -15,45 +16,41 @@ namespace Cmpg323_Project2
         {
 
         }
-        String con = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Onkgopotse Senye\Desktop\CMPG323\Cmpg323_Project2\Cmpg323_Project2\App_Data\PhotoDatabase.mdf;Integrated Security=True";
-        SqlConnection com;
-        SqlCommand comm;
-        SqlDataAdapter adap;
-        DataSet set;
-        SqlDataReader big;
+        
         protected void Button1_Click(object sender, EventArgs e)
         {
 
 
-            Session["Value1"] = TextBox1.Text;
-
-            try
+            SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString);
+            con.Open();
+            string checkuser = "select count(*) from PhtotDatabase where First_Name='" + TextBox1.Text + "'";
+            SqlCommand com = new SqlCommand(checkuser, con);
+            int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
+            con.Close();
+            if (temp == 1)
             {
-                com = new SqlConnection(con);
-                com.Open();
-                adap = new SqlDataAdapter();
-                string sss = $"SELECT * FROM Register";
-                comm = new SqlCommand(sss, com);
-                big = comm.ExecuteReader();
-                while (big.Read())
+                // Response.Write("User Already Exists");
+                //check if password is in the table
+                con.Open();
+                string checkPasswordQuery = "select Password from RegisterTable where Name='" + TextBox1.Text + "'";
+                SqlCommand passComm = new SqlCommand(checkPasswordQuery, con);
+                string password = passComm.ExecuteScalar().ToString().Replace(" ", "");
+
+                //verify password
+                if (password == TextBox2.Text)
                 {
-                    if (big[0].ToString() == TextBox1.Text && big[3].ToString() == TextBox2.Text)
-                    {
-                        Response.Redirect("Photos.aspx");
-                    }
-                    else
-                    {
-                        Label3.Text = "incorrect username or password";
-                    }
-
-
+                    Session["New"] = TextBox1.Text;
+                    Response.Write("Password is correct");
+                    Response.Redirect("Photos.aspx");
                 }
-
-                com.Close();
+                else
+                {
+                    Response.Write("Password is not correct");
+                }
             }
-            catch
+            else
             {
-                Console.WriteLine("Error occured while checking the existance of the user");
+                Response.Write("UserName is not correct");
             }
 
         }
