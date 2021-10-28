@@ -131,21 +131,7 @@ div .one{
         .auto-style1 {
             margin-top: 0;
         }
-        .auto-style2 {
-            margin-left: 0px;
-        }
                
-        .auto-style4 {
-            margin-bottom: 0;
-        }
-       
-        .auto-style5 {
-            width: 328px;
-            height: 37px;
-            border-radius: 13px;
-            text-align: center;
-        }
-       
         </style>
 <body>
    <form id="form1" runat="server">
@@ -196,7 +182,7 @@ div .one{
             </div>
                 </div>
             
-       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [User_Login]"></asp:SqlDataSource>
+       <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [Register]"></asp:SqlDataSource>
             
     </form>
 </body>

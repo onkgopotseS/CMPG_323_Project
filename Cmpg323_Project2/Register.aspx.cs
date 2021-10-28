@@ -15,7 +15,7 @@ namespace Cmpg323_Project2
         {
             SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString);
             con.Open();
-            string checkuser = "select count(*) from User_Login where First_Name='" + TextBox1.Text + "'";
+            string checkuser = "select count(*) from Register where FName='" + TextBox1.Text + "'";
             SqlCommand com = new SqlCommand(checkuser, con);
             int temp = Convert.ToInt32(com.ExecuteScalar().ToString());
 
@@ -33,7 +33,7 @@ namespace Cmpg323_Project2
             {
                 SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString);
                 con.Open();
-                string instertQuery = $"insert into User_Login(Name, Surname, Email, Password) VALUES('{TextBox1.Text}', '{TextBox2.Text}', '{TextBox3.Text}', '{TextBox4.Text}')";
+                string instertQuery = $"insert into Register(FName, LName, Email_Address, Password) VALUES('{TextBox1.Text}', '{TextBox2.Text}', '{TextBox3.Text}', '{TextBox4.Text}')";
                 SqlCommand com = new SqlCommand(instertQuery, con);
 
 
