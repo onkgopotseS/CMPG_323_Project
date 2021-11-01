@@ -13,5 +13,17 @@ namespace Cmpg323_Project2
         {
 
         }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            if( DropDownList2.SelectedItem.Text == "Upload Photos")
+            {
+                Response.Redirect("Upload.aspx");
+            }
+            else if(DropDownList2.SelectedItem.Text == "View Shared Photos")
+            {
+                Response.Redirect("Shared_Photos.aspx");
+            }
+        }
     }
 }

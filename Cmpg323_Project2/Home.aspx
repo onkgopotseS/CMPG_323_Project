@@ -127,23 +127,39 @@ div .one{
             max-width: 100%;
         }
     }
-        .auto-style1 {
-            margin-top: 0;
-        }
-        .auto-style2 {
-            margin-left: 0px;
-        }
-               
-        .auto-style5 {
-            width: 328px;
-            height: 37px;
-            border-radius: 13px;
-            text-align: center;
-        }
-       
-          .auto-style6 {
-              height: 74px;
-              margin-top: 41px;
+          .auto-style8 {
+              width: 85%;
+              height: 205px;
+          }
+          .auto-style9 {
+              width: 209px;
+          }
+          .auto-style10 {
+              height: 23px;
+              width: 209px;
+          }
+          .auto-style11 {
+              width: 85%;
+              height: 205px;
+              margin-bottom: 0;
+          }
+          .auto-style12 {
+              width: 295px;
+          }
+          .auto-style13 {
+              height: 23px;
+              width: 295px;
+          }
+          .auto-style14 {
+              width: 100%;
+              margin-right: 0;
+          }
+          .auto-style15 {
+              width: 275px;
+          }
+          .auto-style16 {
+              height: 23px;
+              width: 275px;
           }
        
         </style>
@@ -151,7 +167,7 @@ div .one{
    <form id="form2" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#">WELCOME</a>
+            <a href="#" style="font-size: xx-large">WELCOME</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">About</a></li>
@@ -161,9 +177,39 @@ div .one{
         </ul>
 
     </header>
-
-        <div>
-            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Upload, Save and Share your photos</h1>
+       <div>
+            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Welcome</h1>
+            <p style="text-align: center; padding-bottom: 30px; padding-top: 30px;">
+                <table class="auto-style14" style="background-position: center center; text-align: center;">
+                    <tr>
+                        <td class="auto-style9">Uploading</td>
+                        <td class="auto-style12">
+                            <img alt="" class="auto-style11" src="" /><br />
+                            <br />
+                        </td>
+                        <td class="auto-style15">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style9">View your photos</td>
+                        <td class="auto-style12">
+                            <img alt="" class="auto-style8" src="" /><br />
+                            <br />
+                        </td>
+                        <td class="auto-style15">&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style10">Share your photos</td>
+                        <td class="auto-style13">
+                            <img alt="" class="auto-style8" src="" /><br />
+                            <br />
+                        </td>
+                        <td class="auto-style16"></td>
+                    </tr>
+                    <tr>
+                        <td class="auto-style9">&nbsp;</td>
+                    </tr>
+                </table>
+            </p>
         </div>
     </form>
 </body>

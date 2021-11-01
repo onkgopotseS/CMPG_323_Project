@@ -49,7 +49,7 @@ namespace Cmpg323_Project2
             }
             else
             {
-                Response.Write("UserName is not correct");
+                Label4.Text= ("Username or Passowrd is not correct");
             }
 
         }

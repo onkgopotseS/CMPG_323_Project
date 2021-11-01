@@ -142,8 +142,9 @@ div .one{
         }
        
           .auto-style6 {
-              height: 74px;
+              height: 92px;
               margin-top: 41px;
+              margin-left: 0;
           }
        
         </style>
@@ -151,7 +152,7 @@ div .one{
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#">WELCOME</a>
+            <a href="#" style="font-size: xx-large">WELCOME</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">About</a></li>
@@ -183,6 +184,7 @@ div .one{
        <p>
            <asp:TextBox ID="TextBox2" runat="server" Height="35px" Width="455px"></asp:TextBox>
        </p>
+                                                                    
        <p>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="*Enter a valid Last name" ForeColor="Red"></asp:RequiredFieldValidator>
        </p>

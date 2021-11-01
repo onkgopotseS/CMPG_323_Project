@@ -63,7 +63,7 @@ div .one{
         }
 
     .logo a {
-        text-transform: lowercase;
+        text-transform: uppercase;
         font-size: 15px;
         color: #574a2b;
     }
@@ -137,11 +137,11 @@ div .one{
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#">WELCOME</a>
+            <a href="#" style="font-size: xx-large">WELCOME</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">About</a></li>
-            <li><a href="/landing.html">Home</a></li>
+            <li><a href="/Home.aspx">Home</a></li>
             <li><a href="/Register.aspx">Register</a></li>
             
             
@@ -164,6 +164,9 @@ div .one{
        </p>
        <p>
            <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*Enter a a valid name" ForeColor="Red"></asp:RequiredFieldValidator>
+            <a href="/users/apply">
+           <asp:Label ID="Label4" runat="server" Text="."></asp:Label>
+                </a>
        </p>
        <p>
            <asp:Label ID="Label2" runat="server" Text="Password"></asp:Label>
@@ -179,10 +182,28 @@ div .one{
              <p>
                <asp:Button ID="Button1" runat="server" Text="Submit" BackColor="#000099" ForeColor="White" OnClick="Button1_Click" Width="455px" Height="42px" />
        </p>
+            <p>
+            <a href="/users/apply">
+           <asp:Label ID="Label5" runat="server" Text="." ForeColor="Red"></asp:Label>
+                </a>
+       </p>
+            <p>
+                &nbsp;</p>
+            <div class="contain2">
+                <div style="padding: 100px" class="auto-style6">
+                <h1 style="color: white; font-size: 40px">Do not have an Account?</h1><br />
+                <p style="color: white;">Register now to upload or update your album</p><br />
+                
+                <button class="auto-style5" style="background-color: deepskyblue"><a href="/Register.aspx" style="color: white;">Register now</a>
+                    </button>
+                    </div>
+            </div>
             </div>
                 </div>
             
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [Register]"></asp:SqlDataSource>
+            
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
     </form>
 </body>
