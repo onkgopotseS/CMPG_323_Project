@@ -149,18 +149,43 @@ div .one{
 
    
 
-      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="false" OnRowDataBound="OnRowDataBound" >
+      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged1" DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" >
+
     <Columns>
         <asp:BoundField DataField="Id" HeaderText="Image Id" />
         <asp:BoundField DataField="Name" HeaderText="Name" />
         <asp:TemplateField HeaderText="Image">
             <ItemTemplate>
+                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
+                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
+            </ItemTemplate>
+
+            <ItemTemplate>
                 <asp:Image ID="Image1" runat="server" />
+            </ItemTemplate>
+          </asp:TemplateField>
+
+         <asp:TemplateField>
+            <ItemTemplate>
+                <asp:LinkButton ID="lbl_edit" runat="server" CommandName="Edit">Edit</asp:LinkButton>
+                <asp:LinkButton ID="lbl_delete" runat="server" CommandName="Delete">Delete</asp:LinkButton>
+            </ItemTemplate>
+            <EditItemTemplate>
+                <asp:LinkButton ID="lbl_update" runat="server" CommandName="Update">Update</asp:LinkButton>
+                <asp:LinkButton ID="lbl_cancle" runat="server" CommandName="Cancel">Cancel</asp:LinkButton>
+            </EditItemTemplate>
+        </asp:TemplateField>
+          <asp:TemplateField HeaderText="Download" HeaderStyle-HorizontalAlign="Center" ItemStyle-HorizontalAlign="Center">
+         <ItemTemplate>
+                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download"  OnClick="DownloadFile"  CommandArgument='<%# Eval("Id") %>'></asp:LinkButton >
+               
             </ItemTemplate>
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
+            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
             <div id="dialog" style="display: none">
+                
 </div>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/start/jquery-ui.css" />
