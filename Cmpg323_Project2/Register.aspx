@@ -127,13 +127,7 @@ div .one{
             max-width: 100%;
         }
     }
-        .auto-style1 {
-            margin-top: 0;
-        }
-        .auto-style2 {
-            margin-left: 0px;
-        }
-               
+                       
         .auto-style5 {
             width: 328px;
             height: 37px;
@@ -145,6 +139,10 @@ div .one{
               height: 92px;
               margin-top: 41px;
               margin-left: 0;
+          }
+       
+          .auto-style7 {
+              width: 116px;
           }
        
         </style>
@@ -165,62 +163,62 @@ div .one{
 
     </header>
 
-        <div class="contain">
-        <div class="contain1" style="margin-left: 15%; padding-top: 20px; padding-right: 10%; max-width: 100%">
-            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Create your account now</h1>
-            <br />
-            <a href="/users/apply">
-       <asp:Label ID="Label1" runat="server" Text="First Name"></asp:Label>
-                </a>
-       <p>
-           <asp:TextBox ID="TextBox1" runat="server" CssClass="auto-style1" Height="35px" Width="455px"></asp:TextBox>
-       </p>
-       <p>
-           <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ControlToValidate="TextBox1" ErrorMessage="*Enter a a valid name" ForeColor="Red"></asp:RequiredFieldValidator>
-       </p>
-       <p>
-           <asp:Label ID="Label2" runat="server" Text="Last Name"></asp:Label>
-       </p>
-       <p>
-           <asp:TextBox ID="TextBox2" runat="server" Height="35px" Width="455px"></asp:TextBox>
-       </p>
-                                                                    
-       <p>
-           <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ControlToValidate="TextBox2" ErrorMessage="*Enter a valid Last name" ForeColor="Red"></asp:RequiredFieldValidator>
-       </p>
-       <p>
-           <asp:Label ID="Label3" runat="server" Text="Email Address"></asp:Label>
-       </p>
-       <p>
-           <asp:TextBox ID="TextBox3" runat="server" Height="35px" Width="455px" CssClass="auto-style3"></asp:TextBox>
-       </p>
-       <p>
-           <asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ControlToValidate="TextBox3" ErrorMessage="*Enter a valid email address" ForeColor="Red"></asp:RequiredFieldValidator>
-       </p>
-       <p>
-           <asp:RegularExpressionValidator ID="RegularExpressionValidator1" runat="server" ControlToValidate="TextBox3" ErrorMessage="Invalid email address" ForeColor="Red" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
-       </p>
-       <p>
-           <asp:Label ID="Label4" runat="server" Text="Password"></asp:Label>
-       </p>
-       <p>
-         <asp:TextBox ID="TextBox4" runat="server" Height="35px" Width="455px" CssClass="auto-style2" TextMode="Password"></asp:TextBox>
-       </p>
-       <p>
-           <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox4" ErrorMessage="*Enter valid Password" ForeColor="Red"></asp:RequiredFieldValidator>
-       </p>
-            <p>
-                &nbsp;</p>
-            <p>
-                &nbsp;</p>
-            <p>
-               <asp:Button ID="Button1" runat="server" Text="Submit" BackColor="#000099" ForeColor="White" OnClick="Button1_Click" Width="455px" Height="42px" />
-       </p>
-            <p>
-                &nbsp;</p>
-            <p>
-                &nbsp;</p>
-            <div class="contain2">
+       <div>  
+    <table align="center">  
+            <tr>  
+                <td colspan="2">  
+                    <h3>  
+                         Registration using Role</h3>  
+                </td>  
+            </tr>  
+            <tr>  
+                <td>  
+                 <asp:Label ID="Label1" runat="server" Text="UserName:" Font-Bold="True" Width="100px" BackColor="#FFFF66" ForeColor="#FF3300"></asp:Label>  
+                    </td>  
+                <td>  
+                    <asp:TextBox ID="txt_UserName" runat="server" Width="150px"></asp:TextBox>  
+                </td>  
+                <td class="auto-style7"><asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="Enter UserName" ControlToValidate="txt_UserName"></asp:RequiredFieldValidator> </td>  
+            </tr>  
+            <tr>  
+                <td>  
+                 <asp:Label ID="Label2" runat="server" Text="Password:" Font-Bold="True" Width="100px" BackColor="#FFFF66" ForeColor="#FF3300"></asp:Label>  
+                 </td>  
+                <td>  
+                    <asp:TextBox ID="txt_Password"  TextMode="Password" runat="server"  
+                        Width="150px"></asp:TextBox>  
+                </td>  
+                <td class="auto-style7"><asp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="Enter Password" ControlToValidate="txt_Password"></asp:RequiredFieldValidator> </td>  
+            </tr>  
+            <tr>  
+                <td>  
+                <asp:Label ID="Label3" runat="server" Text="Role:" Font-Bold="True" Width="100px"  Height="100px" BackColor="#FFFF66" ForeColor="#FF3300"></asp:Label>  
+                    </td>  
+                <td>  
+                    <asp:RadioButtonList ID="rbtRole" runat="server" RepeatDirection="Vertical">  
+                        <asp:ListItem>Admin</asp:ListItem>  
+                        <asp:ListItem>FreeUser</asp:ListItem>  
+                         <asp:ListItem>PaidUser</asp:ListItem>  
+                    </asp:RadioButtonList>  
+                </td>  
+                <td class="auto-style7"><asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="Select role" ControlToValidate="rbtRole"></asp:RequiredFieldValidator> </td>  
+            </tr>  
+            <tr>  
+            <td></td>  
+                <td>  
+                    <asp:Button ID="btn_register" runat="server" BackColor="#CCFF99" Text="Register"  
+                        onclick="btn_register_Click" />  
+                </td>  
+                <td class="auto-style7"><asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/Login.aspx"  
+                        ForeColor="#663300">Click here to Login</asp:HyperLink></td>  
+            </tr>  
+            <tr>  
+                <td align="center"  colspan="2">  
+                    <asp:Label ID="lblmsg" runat="server"></asp:Label>  
+                </td>  
+            </tr>  
+        </table>  
+    </div>
                 <div style="padding: 100px" class="auto-style6">
                 <h1 style="color: white; font-size: 40px">Already Have an account</h1><br />
                 <p style="color: white;">Login now to upload or update your album</p><br />
@@ -228,9 +226,9 @@ div .one{
                 <button class="auto-style5" style="background-color: deepskyblue"><a href="/Login.aspx" style="color: white;">Login now</a>
                     </button>
                     </div>
-            </div>
-                </div>
-            </div>
+         
+                
+            
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [Register]"></asp:SqlDataSource>
     </form>
 </body>

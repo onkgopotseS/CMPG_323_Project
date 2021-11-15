@@ -139,9 +139,9 @@ div .one{
             <a href="#" style="font-size: xx-large">WELCOME</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
-             <li><a href="/About.html">Log out</a></li>
-            <li><a href="/Home.aspx">Upload Pictures</a></li>
-            <li><a href="/Register.aspx">View shared pictures</a></li>
+             <li><a href="/Login.aspx">Log out</a></li>
+            <li><a href="/Upload.aspx">Upload Pictures</a></li>
+            <li><a href="/Shared_Photos.aspx">View shared pictures</a></li>
              </ul>
             </header>
         

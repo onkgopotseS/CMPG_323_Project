@@ -103,13 +103,13 @@ namespace Cmpg323_Project2
         {
             int id = int.Parse((sender as LinkButton).CommandArgument);
             byte[] bytes;
-            string fileName, contentType;
+            string fileName, contentType,Author;
             string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(LoginConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
                 {
-                    cmd.CommandText = "select Name, Data, ContentType from Photos where Id=@Id";
+                    cmd.CommandText = "select ContentType,Data,Name from Photos where Id=@Id";
                     cmd.Parameters.AddWithValue("@Id", id);
                     cmd.Connection = conn;
                     conn.Open();
@@ -119,6 +119,8 @@ namespace Cmpg323_Project2
                         bytes = (byte[])sdr["Data"];
                         contentType = sdr["ContentType"].ToString();
                         fileName = sdr["Name"].ToString();
+                        
+
                     }
                     conn.Close();
                 }

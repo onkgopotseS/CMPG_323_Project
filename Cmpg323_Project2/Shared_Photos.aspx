@@ -128,6 +128,10 @@ div .one{
         }
     }
                        
+          .auto-style1 {
+              margin-right: 75px;
+          }
+                       
         </style>
 <body>
    <form id="form1" runat="server">
@@ -137,7 +141,7 @@ div .one{
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">Log Out</a></li>
-            <li><a href="/Home.aspx">View shared Pictures</a></li>
+            <li><a href="/Upload.aspx">Upload picture</a></li>
             <li><a href="/Register.aspx">Register</a></li>
 
         </ul>
@@ -149,20 +153,25 @@ div .one{
 
    
 
-      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged1" DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" >
+      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged1" DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" CellSpacing="10" CssClass="auto-style1" Height="16px" PageSize="5" Width="622px" >
 
     <Columns>
-        <asp:BoundField DataField="Id" HeaderText="Image Id" />
+        <asp:BoundField DataField="Id" HeaderText="Image Id"/>
         <asp:BoundField DataField="Name" HeaderText="Name" />
+        
         <asp:TemplateField HeaderText="Image">
-            <ItemTemplate>
-                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
-                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
-            </ItemTemplate>
 
             <ItemTemplate>
                 <asp:Image ID="Image1" runat="server" />
             </ItemTemplate>
+            <ItemTemplate>
+                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
+                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
+                <asp:Image ID="Image1" runat="server" />
+            
+            </ItemTemplate>
+
+            <ItemStyle Width="200px" />
           </asp:TemplateField>
 
          <asp:TemplateField>
@@ -180,10 +189,13 @@ div .one{
                 <asp:LinkButton ID="lnkDownload" runat="server" Text="Download"  OnClick="DownloadFile"  CommandArgument='<%# Eval("Id") %>'></asp:LinkButton >
                
             </ItemTemplate>
+
+<HeaderStyle HorizontalAlign="Center"></HeaderStyle>
+
+<ItemStyle HorizontalAlign="Center"></ItemStyle>
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
-            <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_Click">LinkButton</asp:LinkButton>
             <div id="dialog" style="display: none">
                 
 </div>
