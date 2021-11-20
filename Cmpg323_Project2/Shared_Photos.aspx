@@ -152,7 +152,12 @@ div .one{
             <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Uploaded&nbsp; Pictures</h1>
 
    
-
+            <asp:FileUpload ID="FileUpload1" runat="server" />
+<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"  />
+            <%--<br />--%>
+            <asp:Button ID="Button1" runat="server" Text="View metadata" OnClick="Button1_Click" />
+            <br />
+<hr />
       <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged1" DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" CellSpacing="10" CssClass="auto-style1" Height="16px" PageSize="5" Width="622px" >
 
     <Columns>
@@ -164,19 +169,15 @@ div .one{
             <ItemTemplate>
                 <asp:Image ID="Image1" runat="server" />
             </ItemTemplate>
-            <ItemTemplate>
-                <asp:LinkButton ID="lnkDownload" runat="server" Text="Download" OnClick="DownloadFile"
-                    CommandArgument='<%# Eval("Id") %>'></asp:LinkButton>
-                <asp:Image ID="Image1" runat="server" />
             
-            </ItemTemplate>
 
             <ItemStyle Width="200px" />
           </asp:TemplateField>
 
          <asp:TemplateField>
             <ItemTemplate>
-                <asp:LinkButton ID="lbl_edit" runat="server" CommandName="Edit">Edit</asp:LinkButton>
+                
+                <asp:LinkButton ID="LinkButton1" runat="server" CommandName="Edittt">Edit</asp:LinkButton>
                 <asp:LinkButton ID="lbl_delete" runat="server" CommandName="Delete">Delete</asp:LinkButton>
             </ItemTemplate>
             <EditItemTemplate>
@@ -196,6 +197,7 @@ div .one{
         </asp:TemplateField>
     </Columns>
 </asp:GridView>
+            <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
             <div id="dialog" style="display: none">
                 
 </div>

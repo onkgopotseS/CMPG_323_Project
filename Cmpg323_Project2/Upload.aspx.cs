@@ -18,7 +18,14 @@ namespace Cmpg323_Project2
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            Label2.Text = "<b><font color=Brown>" + ": " + "</font>" + "<b><font color=red>" + Session["FName"] + "</font>";
+            if (Context.User.Identity.IsAuthenticated)
+            {
+                Label2.Text = "" + Context.User.Identity.Name;
+            }
+            else
+            {
+                Label2.Text = "hii";
+            }
         }
 
 
@@ -55,9 +62,12 @@ namespace Cmpg323_Project2
                 string alert = "alert('Image uploaded successfully');";
                 ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
             }
-
+            System.Drawing.Image img = System.Drawing.Image.FromStream(FileUpload1.PostedFile.InputStream);
+            int height = img.Height;
+            int width = img.Width;
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "alert('Height:" + height + "\\nWidth:" + width + "');", true);
         }
-
+        
         protected void Button2_Click(object sender, EventArgs e)
         {
             byte[] bytes;
@@ -65,6 +75,7 @@ namespace Cmpg323_Project2
             {
                 bytes = br.ReadBytes(FileUpload1.PostedFile.ContentLength);
             }
+            
             string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
             using (SqlConnection conn = new SqlConnection(LoginConnectionString))
             {
@@ -75,7 +86,7 @@ namespace Cmpg323_Project2
                     cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
                     cmd.Parameters.AddWithValue("@Data", bytes);
                     cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
-
+                    
                     conn.Open();
                     cmd.ExecuteNonQuery();
                     conn.Close();

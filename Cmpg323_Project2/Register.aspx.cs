@@ -29,7 +29,24 @@ namespace Cmpg323_Project2
         
         protected void Button1_Click(object sender, EventArgs e)
         {
-            
+            try
+            {
+                SqlConnection con = new SqlConnection(ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString);
+                con.Open();
+                string instertQuery = $"insert into Register(FName, LName, Email_Address, Password) VALUES('{TextBox1.Text}', '{TextBox2.Text}', '{TextBox3.Text}', '{TextBox4.Text}')";
+                SqlCommand com = new SqlCommand(instertQuery, con);
+
+
+                com.ExecuteNonQuery();
+                Response.Redirect("Login.aspx");
+                Response.Write("Registration is successful!");
+                con.Close();
+            }
+            catch (Exception ex)
+            {
+                Response.Write("Error: " + ex.ToString());
+            }
+
         }
 
         protected void btn_register_Click(object sender, EventArgs e)

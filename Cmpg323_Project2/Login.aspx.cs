@@ -40,7 +40,7 @@ namespace Cmpg323_Project2
                 {
                     Session["New"] = TextBox1.Text;
                     Response.Write("Password is correct");
-                    Response.Redirect("Photos.aspx");
+                    Response.Redirect("Upload.aspx");
                 }
                 else
                 {
