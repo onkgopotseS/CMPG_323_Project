@@ -1,0 +1,38 @@
+{
+  "dependencies": {
+    "storage1": {
+      "restored": true,
+      "restoreTime": "2021-11-22T15:53:10.0672402Z"
+    },
+    "secrets1": {
+      "restored": true,
+      "restoreTime": "2021-11-22T15:42:31.5451441Z"
+    },
+    "mssql1": {
+      "restored": true,
+      "restoreTime": "2021-11-22T15:43:14.3181421Z"
+    }
+  },
+  "parameters": {
+    "storage1.resourceGroupName": {
+      "Name": "storage1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "cmpgProject"
+    },
+    "storage1.subscriptionId": {
+      "Name": "storage1.subscriptionId",
+      "Type": "subscription",
+      "Value": "d0c77b29-f524-478e-b15f-100c69310145"
+    },
+    "mssql1.subscriptionId": {
+      "Name": "mssql1.subscriptionId",
+      "Type": "subscription",
+      "Value": "d0c77b29-f524-478e-b15f-100c69310145"
+    },
+    "mssql1.resourceGroupName": {
+      "Name": "mssql1.resourceGroupName",
+      "Type": "resourceGroup",
+      "Value": "cmpgProject"
+    }
+  }
+}

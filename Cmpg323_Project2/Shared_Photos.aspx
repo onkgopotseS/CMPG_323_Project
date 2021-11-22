@@ -182,8 +182,16 @@ div .one{
               margin-right: 75px;
           }
                        
+          .auto-style2 {
+              height: 15px;
+          }
+                       
         </style>
 <body>
+    
+      
+      
+<
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
@@ -205,7 +213,7 @@ div .one{
             
 <hr />
              <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-    <script src="ASPSnippets_Pager.min.js" type="text/javascript"></script>
+    <script src="Pager.min.js" type="text/javascript"></script>
     <script type="text/javascript">
         $(function () {
             GetCustomers(1);
@@ -351,5 +359,6 @@ div .one{
             
         </div>
     </form>
+        
 </body>
 </html>

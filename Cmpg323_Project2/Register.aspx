@@ -147,6 +147,7 @@ div .one{
        
         </style>
 <body>
+    
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
@@ -226,5 +227,6 @@ div .one{
             
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [Register]"></asp:SqlDataSource>
     </form>
+        
 </body>
 </html>

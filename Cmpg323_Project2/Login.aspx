@@ -7,6 +7,7 @@
 <head runat="server">
     <title></title>
 </head>
+    
       <style>
     * {
         box-sizing: border-box;
@@ -132,8 +133,16 @@ div .one{
             margin-top: 0;
         }
                
+          .auto-style2 {
+              height: 814px;
+          }
+               
         </style>
 <body>
+    
+    
+        
+       
    <form id="form1" runat="server">
        
     <header class="header1">
@@ -175,6 +184,7 @@ div .one{
            <asp:TextBox ID="TextBox2" runat="server" Height="35px" Width="455px" TextMode="Password"></asp:TextBox>
        </p>
             <p>
+               
            <asp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ControlToValidate="TextBox2" ErrorMessage="*Enter valid Password" ForeColor="Red"></asp:RequiredFieldValidator>
        </p>
             <p>
@@ -199,12 +209,14 @@ div .one{
                     </div>
             </div>
             </div>
-                </div>
+                
             
        <asp:SqlDataSource ID="SqlDataSource1" runat="server" ConnectionString="<%$ ConnectionStrings:LoginConnectionString %>" SelectCommand="SELECT * FROM [Register]"></asp:SqlDataSource>
             
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             
     </form>
+        
+    
 </body>
 </html>

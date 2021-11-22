@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "secrets1": {
+      "type": "secrets.user"
+    },
+    "mssql1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/photodbs/databases/Cmpg323_Project2_db",
+      "type": "mssql.azure",
+      "connectionId": "LoginConnectionStrings",
+      "secretStore": "LocalSecretsFile"
+    },
+    "storage1": {
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Storage/storageAccounts/sqlva3i2n6hkmzmojq",
+      "type": "storage.azure",
+      "connectionId": "LoginConnectionString",
+      "secretStore": "LocalSecretsFile"
+    }
+  }
+}
