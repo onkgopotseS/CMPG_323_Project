@@ -13,5 +13,16 @@ namespace Cmpg323_Project2
         {
 
         }
+
+        protected void btnUpload_Click(object sender, EventArgs e)
+        {
+            System.Drawing.Image img = System.Drawing.Image.FromStream(FileUpload1.PostedFile.InputStream);
+            
+            int height = img.Height;
+            int width = img.Width;
+            decimal size = Math.Round(((decimal)FileUpload1.PostedFile.ContentLength / (decimal)1024), 2);
+            ClientScript.RegisterClientScriptBlock(this.GetType(), "alert", "alert( 'size: " + size + "KB\\nHeight:" + height + "\\nWidth:" + width + "');", true);
+
+        }
     }
 }

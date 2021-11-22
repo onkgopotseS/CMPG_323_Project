@@ -9,6 +9,7 @@ namespace Cmpg323_Project2.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            //ImageData();
         }
     }
 }

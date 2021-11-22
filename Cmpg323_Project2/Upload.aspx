@@ -129,26 +129,21 @@ div .one{
         }
     }
                        
-          .auto-style1 {
-              width: 48%;
-          }
-          .auto-style2 {
-              width: 186px;
-          }
-                       
-        </style>
+          </style>
 <body>
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#" style="font-size: xx-large">WELCOME&nbsp;
+            <a href="#" style="font-size: xx-large; color: #0099CC;">[ PHOTOALBUM ]</a>
             <asp:Label ID="Label2" runat="server" Text="."></asp:Label>
-            </a>
+            
         &nbsp;</h1>
         <ul class="main-nav" id="myTopnav">
-             <li><a href="/Login">Log Out</a></li>
-            <li><a href="/Shared_Photos.aspx">View&nbsp; Pictures</a></li>
-            <li><a href="/Register.aspx">Register</a></li>
+             <li><a href="/Login.aspx">Log Out</a></li>
+            <li><a href="/Shared_Photos.aspx">View&nbsp; Album</a></li>
+            <li><a href="/meta.aspx">Upload to view metadata</a></li>
+
+
             
             
 
@@ -161,57 +156,30 @@ div .one{
 
    
 
-    <asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"  />
+    <asp:FileUpload ID="FileUpload1" runat="server" Height="41px" Width="369px" />
             <%--<br />--%>
+            
+            <br />
+            <br />
+            
             <br />
 <hr />
   
             <asp:Label ID="Label1" runat="server" Text="."></asp:Label>
+
+            <asp:Button ID="btnUpload" runat="server" Text="Upload" BackColor="#000099" ForeColor="White" OnClick="btnUpload_Click" Width="355px" Height="42px" />
             <br />
             <br />
             <p>  
-        <div>           
-            <asp:Image ID="Image1" runat="server" Height="356px" Width="385px" />
-            
-               <asp:Button ID="Button6" runat="server" OnClick="Button5_Click" Text="Download photo" />
-          
-            <asp:Button ID="Button4" runat="server" OnClick="Button4_Click" Text="Share Photo" Width="140px" />
-            <table class="auto-style1">
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Delete Photo" Width="140px" />
-                        <br />
-                    </td>
-                    <td>&nbsp;</td>
-                    <td>
-                        &nbsp;</td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Save" />
-                        <br />
-                    </td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td class="auto-style2">
-                        <asp:Button ID="Button3" runat="server" Text="View Meta data" OnClick="Button3_Click" />
-                    </td>
-                    
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-        </div> 
-    </p> 
+        
+                
         <br />
      <div class="contain2">
                 <div style="padding: 100px" class="auto-style6">
-                <h1 style="color: white; font-size: 40px">want to view Photos?</h1><br />
+                <h1 style="color: white; font-size: 40px">want to view your Album?</h1><br />
                 <p style="color: white;">Click here to view Uploaded pictures</p><br />
                 
-                <button class="auto-style5" style="background-color: deepskyblue"><a href="/Shared_Photos.aspx" style="color: white;">View Pictures</a>
+                <button class="auto-style5" style="background-color: deepskyblue"><a href="/Shared_Photos.aspx" style="color: white;">View Album</a>
                     </button>
                     </div>
             </div>

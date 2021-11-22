@@ -128,8 +128,8 @@ div .one{
         }
     }
           .auto-style8 {
-              width: 85%;
-              height: 205px;
+              width: 107%;
+              height: 206px;
           }
           .auto-style9 {
               width: 209px;
@@ -139,8 +139,8 @@ div .one{
               width: 209px;
           }
           .auto-style11 {
-              width: 85%;
-              height: 205px;
+              width: 106%;
+              height: 206px;
               margin-bottom: 0;
           }
           .auto-style12 {
@@ -162,12 +162,17 @@ div .one{
               width: 275px;
           }
        
+          .auto-style17 {
+              width: 109%;
+              height: 222px;
+          }
+       
         </style>
 <body>
    <form id="form2" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#" style="font-size: xx-large">WELCOME</a>
+            <a href="#" style="font-size: xx-large; color: #0099CC;">[ PHOTOALBUM ]</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
              <li><a href="/About.html">About</a></li>
@@ -178,13 +183,16 @@ div .one{
 
     </header>
        <div>
-            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Welcome</h1>
+            <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">The power of photos in your hands</h1>
+            <p style="text-align: center; padding-bottom: 30px; padding-top: 30px;">
+                <asp:Label ID="Label1" runat="server" BorderStyle="None" Font-Bold="True" Font-Size="X-Large" ForeColor="#0099CC" Text="Simple tool to upload, manage and share high quality images"></asp:Label>
+            </p>
             <p style="text-align: center; padding-bottom: 30px; padding-top: 30px;">
                 <table class="auto-style14" style="background-position: center center; text-align: center;">
                     <tr>
-                        <td class="auto-style9">Uploading</td>
+                        <td class="auto-style9">Upload your photos</td>
                         <td class="auto-style12">
-                            <img alt="" class="auto-style11" src="" /><br />
+                            <img alt="" class="auto-style11" src="" style="background-position: center center; background-image: url('Images/images (3).png');" /><br />
                             <br />
                         </td>
                         <td class="auto-style15">&nbsp;</td>
@@ -192,7 +200,7 @@ div .one{
                     <tr>
                         <td class="auto-style9">View your photos</td>
                         <td class="auto-style12">
-                            <img alt="" class="auto-style8" src="" /><br />
+                            <img alt="" class="auto-style8" src="" style="background-position: center center; background-image: url('Images/images (7).jpeg')" /><br />
                             <br />
                         </td>
                         <td class="auto-style15">&nbsp;</td>
@@ -200,7 +208,7 @@ div .one{
                     <tr>
                         <td class="auto-style10">Share your photos</td>
                         <td class="auto-style13">
-                            <img alt="" class="auto-style8" src="" /><br />
+                            <img alt="" class="auto-style17" src="" style="background-image: url('Images/images (2).png'); background-repeat: no-repeat; background-position: center center" /><br />
                             <br />
                         </td>
                         <td class="auto-style16"></td>

@@ -5,6 +5,56 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <style type="text/css">
+        body
+        {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+        table
+        {
+            border: 1px solid #ccc;
+        }
+        table th
+        {
+            background-color: #F7F7F7;
+            color: #333;
+            font-weight: bold;
+        }
+        table th, table td
+        {
+            padding: 5px;
+            border-color: #ccc;
+        }
+        .Pager span
+        {
+            color: #333;
+            background-color: #F7F7F7;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+            width: 20px;
+            margin-right: 3px;
+            line-height: 150%;
+            border: 1px solid #ccc;
+        }
+        .Pager a
+        {
+            text-align: center;
+            display: inline-block;
+            width: 20px;
+            border: 1px solid #ccc;
+            color: #fff;
+            color: #333;
+            margin-right: 3px;
+            line-height: 150%;
+            text-decoration: none;
+        }
+        .highlight
+        {
+            background-color: #FFFFAF;
+        }
+    </style>
 </head>
       <style>
     * {
@@ -137,12 +187,12 @@ div .one{
    <form id="form1" runat="server">
     <header class="header1">
         <h1 class="logo">
-            <a href="#" style="font-size: xx-large">WELCOME</a>
+            <a href="#" style="font-size: xx-large; color: #0099CC;">[ PHOTOALBUM ]</a>
         </h1>
         <ul class="main-nav" id="myTopnav">
-             <li><a href="/About.html">Log Out</a></li>
+             <li><a href="/Login.aspx">Log Out</a></li>
             <li><a href="/Upload.aspx">Upload picture</a></li>
-            <li><a href="/Register.aspx">Register</a></li>
+            <li><a href="/Home.aspx">Home</a></li>
 
         </ul>
          </header>
@@ -152,13 +202,90 @@ div .one{
             <h1 style="text-align: center; padding-bottom: 30px; padding-top: 30px;">Uploaded&nbsp; Pictures</h1>
 
    
-            <asp:FileUpload ID="FileUpload1" runat="server" />
-<asp:Button ID="btnUpload" runat="server" Text="Upload" OnClick="btnUpload_Click"  />
-            <%--<br />--%>
-            <asp:Button ID="Button1" runat="server" Text="View metadata" OnClick="Button1_Click" />
-            <br />
+            
 <hr />
-      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound" OnSelectedIndexChanged="gvImages_SelectedIndexChanged1" DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" CellSpacing="10" CssClass="auto-style1" Height="16px" PageSize="5" Width="622px" >
+             <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="ASPSnippets_Pager.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            GetCustomers(1);
+        });
+        $("[id*=txtSearch]").live("keyup", function () {
+            GetCustomers(parseInt(1));
+        });
+        $(".Pager .page").live("click", function () {
+            GetCustomers(parseInt($(this).attr('page')));
+        });
+        function SearchTerm() {
+            return jQuery.trim($("[id*=txtSearch]").val());
+        };
+        function GetCustomers(pageIndex) {
+            $.ajax({
+                type: "POST",
+                url: "Default.aspx/GetFiles",
+                data: '{searchTerm: "' + SearchTerm() + '", pageIndex: ' + pageIndex + '}',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccess,
+                failure: function (response) {
+                    alert(response.d);
+                },
+                error: function (response) {
+                    alert(response.d);
+                }
+            });
+        }
+        var row;
+        function OnSuccess(response) {
+            var xmlDoc = $.parseXML(response.d);
+            var xml = $(xmlDoc);
+            var files = xml.find("Files");
+            if (row == null) {
+                row = $("[Id*=gvImages] tr:last-child").clone(true);
+            }
+            $("[Id*=gvImages] tr").not($("[Id*=gvImages] tr:first-child")).remove();
+            if (files.length > 0) {
+                $.each(files, function () {
+                    var employee = $(this);
+                    $("td", row).eq(0).html($(this).find("Id").text());
+                    $("td", row).eq(1).html($(this).find("Name").text());
+                    $("td", row).eq(2).html("<img src='" + $(this).find("Image").text() + "' alt='" + $(this).find("Name").text() + "' height='100px' width='100px' />");
+                    $("[Id*=gvImages]").append(row);
+                    row = $("[Id*=gvImages] tr:last-child").clone(true);
+                });
+                var pager = xml.find("Pager");
+                $(".Pager").ASPSnippets_Pager({
+                    ActiveCssClass: "current",
+                    PagerCssClass: "pager",
+                    PageIndex: parseInt(pager.find("PageIndex").text()),
+                    PageSize: parseInt(pager.find("PageSize").text()),
+                    RecordCount: parseInt(pager.find("RecordCount").text())
+                });
+
+                $(".Name").each(function () {
+                    var searchPattern = new RegExp('(' + SearchTerm() + ')', 'ig');
+                    $(this).html($(this).text().replace(searchPattern, "<span class = 'highlight'>" + SearchTerm() + "</span>"));
+                });
+            } else {
+                var empty_row = row.clone(true);
+                $("td:first-child", empty_row).attr("colspan", $("td", row).length);
+                $("td:first-child", empty_row).attr("align", "center");
+                $("td:first-child", empty_row).html("No records found for the search criteria.");
+                $("td", empty_row).not($("td:first-child", empty_row)).remove();
+                $("[Id*=gvImages]").append(empty_row);
+            }
+        };
+    </script>
+
+    Search:
+    <asp:TextBox ID="txtSearch" runat="server" />
+    <hr />
+    
+    <br />
+    <div class="Pager">
+    </div>
+<hr />
+      <asp:GridView ID="gvImages" runat="server" AutoGenerateColumns="False" OnRowDataBound="OnRowDataBound"  DataKeyNames="Id" OnRowDeleting="gvImages_RowDeleting" CellSpacing="10" CssClass="auto-style1" Height="16px" PageSize="5" Width="627px" >
 
     <Columns>
         <asp:BoundField DataField="Id" HeaderText="Image Id"/>

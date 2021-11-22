@@ -138,9 +138,9 @@ div .one{
        
     <header class="header1">
         <h1 class="logo">
-            <a href="#" style="font-size: xx-large">WELCOME&nbsp; </a>&nbsp;</h1>
+            <a href="#" style="font-size: xx-large; color: #0099CC;">[ PHOTOALBUM ]</a>&nbsp;</h1>
         <ul class="main-nav" id="myTopnav">
-             <li><a href="/About.html">About</a></li>
+             <li><a href="/About.aspx">About</a></li>
             <li><a href="/Home.aspx">Home</a></li>
             <li><a href="/Register.aspx">Register</a></li>
             

@@ -10,19 +10,21 @@ using System.Configuration;
 using System.Data.SqlClient;
 using System.Drawing.Imaging;
 
+using System.Web.Services;
+
 namespace Cmpg323_Project2
 {
     public partial class Shared_Photos : System.Web.UI.Page
     {
-        //System.Web.UI.WebControls.Image img = new System.Drawing.Image();
-        System.Web.UI.WebControls.Image img = new System.Web.UI.WebControls.Image();
+        
 
 
         SqlDataAdapter da;
         DataSet ds;
         string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
         SqlConnection conn;
-        // System.Drawing.Image img = new System.Drawing.Image();
+       
+        private static int PageSize = 2;
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -32,13 +34,16 @@ namespace Cmpg323_Project2
                 //string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
                 using (SqlConnection conn = new SqlConnection(LoginConnectionString))
                 {
-                    using (SqlDataAdapter sda = new SqlDataAdapter("SELECT * FROM Photos", conn))
+                    using ( da = new SqlDataAdapter("SELECT * FROM Photos", conn))
                     {
                         DataTable dt = new DataTable();
-                        sda.Fill(dt);
+                        da.Fill(dt);
                         gvImages.DataSource = dt;
                         gvImages.DataBind();
                         ImageData();
+                        //BindDummyRow();
+                        
+
                     }
                 }
             }
@@ -51,6 +56,63 @@ namespace Cmpg323_Project2
                 string imageUrl = "data:image/jpg;base64," + Convert.ToBase64String((byte[])dr["Data"]);
 
                 (e.Row.FindControl("Image1") as Image).ImageUrl = imageUrl;
+            }
+        }
+        /*private void BindDummyRow()
+        {
+            DataTable dummy = new DataTable();
+            dummy.Columns.Add("Id");
+            dummy.Columns.Add("Name");
+            dummy.Columns.Add("Data");
+            dummy.Rows.Add();
+            gvImages.DataSource = dummy;
+            gvImages.DataBind();
+        }*/
+
+        [WebMethod]
+        public static string GetFiles(string searchTerm, int pageIndex)
+        {
+            string query = "[Files_GetFiles_Pager]";
+            SqlCommand cmd = new SqlCommand(query);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@SearchTerm", searchTerm);
+            cmd.Parameters.AddWithValue("@PageIndex", pageIndex);
+            cmd.Parameters.AddWithValue("@PageSize", PageSize);
+            cmd.Parameters.Add("@RecordCount", SqlDbType.Int, 4).Direction = ParameterDirection.Output;
+            return GetData(cmd, pageIndex).GetXml();
+        }
+
+        private static DataSet GetData(SqlCommand cmd, int pageIndex)
+        {
+            string strConnString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(strConnString))
+            {
+                using (SqlDataAdapter sda = new SqlDataAdapter())
+                {
+                    cmd.Connection = conn;
+                    sda.SelectCommand = cmd;
+                    using (DataSet ds = new DataSet())
+                    {
+                        sda.Fill(ds, "Files");
+                        DataTable dt = new DataTable("Pager");
+                        dt.Columns.Add("PageIndex");
+                        dt.Columns.Add("PageSize");
+                        dt.Columns.Add("RecordCount");
+                        dt.Rows.Add();
+                        dt.Rows[0]["PageIndex"] = pageIndex;
+                        dt.Rows[0]["PageSize"] = PageSize;
+                        dt.Rows[0]["RecordCount"] = cmd.Parameters["@RecordCount"].Value;
+                        ds.Tables["Files"].Columns.Add("Image");
+                        for (int i = 0; i < ds.Tables["Files"].Rows.Count; i++)
+                        {
+                            byte[] imgBytes = (byte[])ds.Tables["Files"].Rows[i]["Data"];
+                            string base64String = Convert.ToBase64String(imgBytes, 0, imgBytes.Length);
+                            ds.Tables["Files"].Rows[i]["Image"] = "data:image/png;base64," + base64String;
+                        }
+                        ds.Tables.Add(dt);
+                        return ds;
+                    }
+                }
             }
         }
         protected void ImageData()
@@ -79,7 +141,7 @@ namespace Cmpg323_Project2
             SqlCommand cmd = new SqlCommand("delete FROM Photos where Id='" + Convert.ToInt32(gvImages.DataKeys[e.RowIndex].Value.ToString()) + "'", conn);
             cmd.ExecuteNonQuery();
             conn.Close();
-            //ImageDeleteFromFolder(name.Text);
+            
             ImageData();
         }
         protected void gvImages_RowEditing(object sender, GridViewDeleteEventArgs e)
@@ -88,23 +150,7 @@ namespace Cmpg323_Project2
         }
     
 
-        /* protected void ImageDeleteFromFolder(string Images)
-         {
-             string file_name = Images;
-             string path = Server.MapPath("~/uploads/");
-             FileInfo file = new FileInfo(path + file_name);
-             if (file.Exists)
-             {
-                 file.Delete();
-                 lblResult.Text = " file deleted successfully";
-                 lblResult.ForeColor = System.Drawing.Color.Green;
-             }
-             else
-             {
-                 lblResult.Text = " This file does not exists ";
-                 lblResult.ForeColor = System.Drawing.Color.Red;
-             }
-         }*/
+        
 
         protected void DownloadFile(object sender, EventArgs e)
         {
@@ -112,6 +158,7 @@ namespace Cmpg323_Project2
             byte[] bytes;
             string fileName, contentType;
             string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
+
             using (SqlConnection conn = new SqlConnection(LoginConnectionString))
             {
                 using (SqlCommand cmd = new SqlCommand())
@@ -153,7 +200,7 @@ namespace Cmpg323_Project2
         {
 
         }
-        private void Upload(decimal size,  int height, int width)
+        /*private void Upload(decimal size,  int height, int width)
         {
             System.Drawing.Image img = System.Drawing.Image.FromStream(FileUpload1.PostedFile.InputStream);
             height = img.Height;
@@ -167,47 +214,8 @@ namespace Cmpg323_Project2
                 cmd.Parameters.AddWithValue("@Width", width);
                 cmd.Parameters.AddWithValue("@Height", height);
             }
-        }
-        protected void btnUpload_Click(object sender, EventArgs e)
-        {
-            
-            byte[] bytes;
-            using (BinaryReader br = new BinaryReader(FileUpload1.PostedFile.InputStream))
-            {
-                bytes = br.ReadBytes(FileUpload1.PostedFile.ContentLength);
-            }
-            
-            string LoginConnectionString = ConfigurationManager.ConnectionStrings["LoginConnectionString"].ConnectionString;
-            using (SqlConnection conn = new SqlConnection(LoginConnectionString))
-            {
-                string sql = "INSERT INTO Photos VALUES( @ContentType, @Data, @Name)";
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    ///cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
-                    cmd.Parameters.AddWithValue("@ContentType", FileUpload1.PostedFile.ContentType);
-                    cmd.Parameters.AddWithValue("@Data", bytes);
-                    cmd.Parameters.AddWithValue("@Name", Path.GetFileName(FileUpload1.PostedFile.FileName));
-                   // Upload();
-
-                    conn.Open();
-                    
-                    cmd.ExecuteNonQuery();
-                    conn.Close();
-                    
-                }
-                string alert = "alert('Image saved in album');";
-                ScriptManager.RegisterStartupScript(this, GetType(), "JScript", alert, true);
-                
-
-
-            }
-
-         
-
-            Response.Redirect(Request.Url.AbsoluteUri);
-            
-
-        }
+        }*/
+        
 
         protected void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
